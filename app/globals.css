@@ -1,0 +1,681 @@
+/* ===================================================================
+   Nect Lite — Global Design System
+   Neo-Brutalism Light Mode matching GameNect Flutter app
+   =================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap');
+
+/* ─── CSS Custom Properties ─────────────────────────────────────── */
+:root {
+  /* Background layers */
+  --bg-base: #F5F5F7;
+  --bg-surface: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-input: rgba(0, 0, 0, 0.03);
+  --bg-nav: rgba(255, 255, 255, 0.6);
+  --neo-bg: #FFFFFF;
+  --neo-text: #000000;
+  --accent: #FF6E40;
+  --accent-dim: #FFE0D5;
+
+  /* Brand colors */
+  --accent-orange: #FF6E40;
+  --accent-red: #FF2D55;
+  --accent-yellow: #FFEB3B;
+  --accent-purple: #9b51e0; /* Ví GameNect color */
+
+  /* Text & Border */
+  --text-primary: #000000;
+  --text-secondary: #4A4A52;
+  --text-muted: #8E8E93;
+  --neo-border: #000000;
+
+  /* Spacing */
+  --app-max-width: 430px;
+  --nav-height: 72px;
+  --header-height: 60px;
+  --radius-md: 12px;
+
+  /* Shadows (Neo-Brutalism) */
+  --shadow-neo: 4px 4px 0px var(--neo-border);
+  --shadow-neo-sm: 2px 2px 0px var(--neo-border);
+  --shadow-neo-hover: 2px 2px 0px var(--neo-border);
+  --shadow-card: 8px 8px 0px var(--neo-border);
+  
+  /* Transitions */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease: ease-out;
+}
+
+/* ─── Reset ──────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  background:
+    radial-gradient(circle at 18px 18px, rgba(255, 110, 64, 0.08) 0 2px, transparent 2px),
+    var(--bg-base);
+  background-size: 34px 34px;
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  /* Center the mobile shell on desktop */
+  display: flex;
+  justify-content: center;
+}
+
+/* ─── App Shell ──────────────────────────────────────────────────── */
+#__next,
+main {
+  width: 100%;
+  max-width: var(--app-max-width);
+  position: relative;
+  min-height: 100dvh;
+  background: var(--bg-surface);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.04), 0 18px 60px rgba(0,0,0,0.12);
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 0px; } /* Hide scrollbar for mobile feel */
+
+/* ─── Typography ─────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: var(--text-primary);
+}
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.375rem; }
+h3 { font-size: 1.125rem; }
+h4 { font-size: 0.9375rem; }
+p { color: var(--text-secondary); }
+
+a {
+  color: var(--accent-orange);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* ─── NEO-BRUTALISM UTILITIES ────────────────────────────────────── */
+
+/* Default Neo Box */
+.neo-box {
+  background: var(--bg-surface);
+  border: 3px solid var(--neo-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-neo);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Neo Input */
+.neo-input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  background: var(--bg-input);
+  border: 3px solid var(--neo-border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  outline: none;
+}
+.neo-input::placeholder { color: var(--text-muted); font-weight: 500; }
+.neo-input:focus {
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-neo-sm);
+  transform: translateY(-2px) translateX(-2px);
+}
+textarea.neo-input {
+  height: auto;
+  padding: 14px 16px;
+  resize: none;
+  line-height: 1.5;
+}
+
+/* Neo Button */
+.neo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  border: 3px solid var(--neo-border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.1s;
+  padding: 0 20px;
+  height: 52px;
+  box-shadow: var(--shadow-neo);
+  color: var(--text-primary);
+  background: var(--bg-surface);
+}
+.neo-btn:active {
+  box-shadow: none;
+  transform: translate(4px, 4px);
+}
+.neo-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: translate(4px, 4px);
+}
+.neo-btn-primary {
+  background: var(--accent-orange);
+  color: #fff;
+}
+.neo-btn-red {
+  background: var(--accent-red);
+  color: #fff;
+}
+.neo-btn-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  padding: 0;
+  font-size: 1.5rem;
+}
+
+/* Neo Avatar */
+.neo-avatar {
+  border-radius: 50%;
+  border: 3px solid var(--neo-border);
+  box-shadow: var(--shadow-neo-sm);
+  object-fit: cover;
+  background: var(--accent-yellow);
+}
+
+/* Glassmorphism */
+.neo-glass {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 3px solid var(--neo-border);
+}
+
+/* ─── Page scaffold ──────────────────────────────────────────────── */
+.page {
+  min-height: calc(100dvh - var(--header-height));
+  padding-top: 12px;
+  padding-bottom: calc(var(--nav-height) + 40px + env(safe-area-inset-bottom));
+  overflow-y: auto;
+  background: var(--bg-base);
+}
+.page-content {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+}
+
+.app-shell {
+  position: relative;
+  width: 100%;
+  max-width: var(--app-max-width);
+  min-height: 100dvh;
+  background: var(--bg-base);
+  overflow-x: hidden;
+}
+
+/* ─── Bottom Nav ──────────────────────────────────────────────────── */
+.bottom-nav-container {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom) + 16px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: calc(var(--app-max-width) - 40px);
+  z-index: 100;
+}
+.bottom-nav {
+  height: 72px;
+  border-radius: 40px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-evenly;
+  padding: 0 8px;
+  position: relative;
+}
+.bottom-nav::after {
+  content: "";
+  position: absolute;
+  inset: 4px -4px -4px 4px;
+  border: 3px solid var(--neo-border);
+  border-radius: 40px;
+  pointer-events: none;
+  z-index: -1;
+}
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  color: var(--text-muted);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.2s var(--ease-bounce);
+}
+.nav-item-icon {
+  width: 44px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  transition: all 0.2s var(--ease-bounce);
+  font-size: 1.5rem;
+}
+.nav-item.active {
+  color: var(--text-primary);
+}
+.nav-item.active .nav-item-icon {
+  background: var(--accent-orange);
+  color: #fff;
+  border: 2px solid var(--neo-border);
+  box-shadow: 2px 2px 0px var(--neo-border);
+  transform: scale(1.1);
+}
+.nav-item-label {
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* Floating Action Buttons above Nav */
+.fab-container {
+  position: absolute;
+  right: 0;
+  bottom: 84px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+.neo-fab {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid var(--neo-border);
+  box-shadow: 3px 3px 0px var(--neo-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+}
+.neo-fab:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
+}
+.neo-fab-orange { background: var(--accent-orange); }
+.neo-fab-red { background: var(--accent-red); }
+.neo-fab-label {
+  font-size: 0.5rem;
+  font-weight: 900;
+  margin-top: 2px;
+}
+
+/* ─── Header ─────────────────────────────────────────────────────── */
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  max-width: var(--app-max-width);
+  height: var(--header-height);
+  background: rgba(245, 245, 247, 0.82);
+  border-bottom: 0;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  z-index: 110;
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 900;
+  font-size: 1.25rem;
+  text-transform: lowercase;
+}
+.header-title {
+  flex: 1;
+  font-size: 1.125rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+}
+.header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.header-icon-btn {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--neo-border);
+  border-radius: 10px;
+  background: var(--bg-surface);
+  color: var(--accent-orange);
+  box-shadow: var(--shadow-neo-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.premium-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ─── Swipe / Moment Card ────────────────────────────────────────── */
+.swipe-card-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
+  border-radius: 30px;
+  min-height: 520px;
+}
+.swipe-card-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  border: 4px solid var(--neo-border);
+  background: var(--bg-surface);
+  top: 6px;
+  left: 6px;
+}
+.swipe-card {
+  position: absolute;
+  inset: 0;
+  border: 4px solid var(--neo-border);
+  border-radius: 30px;
+  overflow: hidden;
+  background: var(--bg-surface);
+  transition: transform 0.1s;
+}
+.swipe-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.swipe-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.8) 0%,
+    rgba(0,0,0,0.3) 40%,
+    transparent 100%
+  );
+}
+.swipe-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 20px 104px;
+  color: white;
+}
+.swipe-card-name {
+  font-size: 1.75rem;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+.swipe-label-like,
+.swipe-label-nope {
+  position: absolute;
+  top: 26px;
+  z-index: 4;
+  padding: 8px 12px;
+  border: 3px solid var(--neo-border);
+  border-radius: 10px;
+  background: var(--accent-orange);
+  color: #fff;
+  box-shadow: var(--shadow-neo-sm);
+  font-size: 1rem;
+  font-weight: 900;
+  transform: rotate(-10deg);
+}
+.swipe-label-like { left: 22px; }
+.swipe-label-nope {
+  right: 22px;
+  background: var(--accent-red);
+  transform: rotate(10deg);
+}
+
+/* ─── Chat Items ─────────────────────────────────────────────────── */
+.chat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-bottom: 2px solid var(--neo-border);
+  background: var(--bg-surface);
+  cursor: pointer;
+}
+.chat-item:last-child {
+  border-bottom: none;
+}
+.chat-item-name {
+  font-weight: 800;
+  font-size: 1rem;
+}
+.chat-item-msg {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Bubble */
+.bubble {
+  max-width: 75%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-weight: 600;
+  border: 3px solid var(--neo-border);
+  box-shadow: 2px 2px 0px var(--neo-border);
+  margin-bottom: 8px;
+}
+.bubble-received {
+  background: #E0E0E0;
+  color: #000;
+  border-bottom-left-radius: 4px;
+}
+.bubble-sent {
+  background: var(--accent-orange);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+/* ─── Interest Tags ──────────────────────────────────────────────── */
+.interest-tag {
+  display: inline-flex;
+  padding: 6px 14px;
+  border: 2px solid var(--neo-border);
+  border-radius: 8px;
+  background: var(--bg-surface);
+  font-weight: 900;
+  font-size: 0.75rem;
+  box-shadow: 2px 2px 0px var(--neo-border);
+  color: var(--text-primary);
+}
+.interest-tag.selected {
+  background: var(--accent-orange);
+  color: white;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 3px solid var(--neo-border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-neo-sm);
+  font-weight: 900;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+}
+.btn-primary {
+  background: var(--accent-orange);
+  color: #fff;
+}
+.btn-secondary {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+.btn-icon {
+  width: 40px;
+  min-height: 40px;
+  padding: 0;
+  font-size: 1.25rem;
+}
+.btn-full { width: 100%; }
+
+.card {
+  background: var(--bg-surface);
+  border: 3px solid var(--neo-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-neo-sm);
+}
+.p-4 { padding: 16px; }
+.mb-4 { margin-bottom: 16px; }
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.flex { display: flex; }
+.items-center { align-items: center; }
+.gap-2 { gap: 8px; }
+
+.profile-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border: 4px solid var(--neo-border);
+  border-radius: 30px;
+  overflow: hidden;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-card);
+  margin-bottom: 18px;
+}
+.profile-hero-overlay {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 22px;
+  background: linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0.25), transparent);
+}
+
+.empty-state {
+  width: 100%;
+  padding: 36px 22px;
+  text-align: center;
+  background: var(--bg-surface);
+  border: 3px solid var(--neo-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-neo);
+}
+.empty-state-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 14px;
+  border: 3px solid var(--neo-border);
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: var(--accent-orange);
+  color: #fff;
+  box-shadow: var(--shadow-neo-sm);
+  font-size: 1.8rem;
+}
+
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+}
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 4px solid var(--neo-border);
+  border-top-color: var(--accent-orange);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.18s ease-out both;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-height: 760px) {
+  .swipe-card-wrapper {
+    min-height: 440px;
+  }
+}
+
+/* ─── Badges ─────────────────────────────────────────────────────── */
+.neo-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--accent-red);
+  color: white;
+  border: 2px solid var(--neo-border);
+  border-radius: 12px;
+  padding: 2px 6px;
+  font-size: 0.6rem;
+  font-weight: 900;
+  box-shadow: 2px 2px 0px var(--neo-border);
+}
+
+@keyframes flyAway {
+  0% { transform: scale(1) translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: scale(0.7) translateY(-200px) rotate(-15deg); opacity: 0; }
+}
+.fly-away {
+  animation: flyAway 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
