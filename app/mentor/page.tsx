@@ -142,10 +142,9 @@ export default function SpotlightPage() {
                 return (
                   <div key={media.id} ref={index === loadTriggerIndex ? loadTriggerRef : null}>
                     <SpotlightCard
-                      post={media}
-                      mentorName={author?.username}
-                      avatarUrl={author?.avatarUrl}
-                      unseenCount={0}
+                      posts={[media]}
+                      mentorMap={authorMap as any}
+                      unseenIds={[]}
                       currentUserId={user?.uid}
                       onLike={(postId, isLiked) => handleLike(media)}
                     />

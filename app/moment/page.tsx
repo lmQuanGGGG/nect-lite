@@ -49,7 +49,7 @@ export default function MomentPage() {
   
   // Spotlight
   const [spotlightPosts, setSpotlightPosts] = useState<MentorMedia[]>([]);
-  const [mentorMap, setMentorMap] = useState<Record<string, MentorModel & { username: string; avatarUrl: string }>>({});
+  const [mentorMap, setMentorMap] = useState<Record<string, UserModel>>({});
 
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -153,7 +153,7 @@ export default function MomentPage() {
         moments: MomentModel[];
         spotlightPosts: MentorMedia[];
         authorMap: Record<string, UserModel>;
-        mentorMap: Record<string, MentorModel & { username: string; avatarUrl: string }>;
+        mentorMap: Record<string, UserModel>;
         timestamp: number;
       }>(cacheKeyStr);
 

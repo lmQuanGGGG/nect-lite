@@ -72,9 +72,9 @@ export default function MessageBubble({ message, isSent, peerAvatar }: MessageBu
         >
           {message.isRecalled ? (
             <span style={{ fontSize: '0.875rem', opacity: 0.7 }}>Tin nhắn đã bị thu hồi</span>
-          ) : (message.type === 'media' || message.type === 'image' || message.type === 'video' || message.mediaUrl || (message as any).imageUrl) ? (
+          ) : ((message.type as string) === 'media' || (message.type as string) === 'image' || (message.type as string) === 'video' || message.mediaUrl || (message as any).imageUrl) ? (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-            {message.isVideo || message.type === 'video' ? (
+            {message.isVideo || (message.type as string) === 'video' ? (
               <video
                 src={message.mediaUrl || (message as any).imageUrl}
                 controls
